@@ -1,25 +1,40 @@
-# Search Bar for CAPTE
-## Il s agit d une barre de recherche sous les couleurs de capte en utilisant vue3(composition API). il permet de fetcher des produits sur api externes et de retourner les resultats sous forme de liste dynamique. De plus les produits sont affiches en fonction de leurs categories.
-- Le code est realise en typescript 
-- Le header contient deux loader error et loading en fonction du retour serveur et des erreurs plus largement.
-- Le code est debounced pour eviter les requetes trop frequente.
-- le code conteint les notions suivantes en pratique: ref, reactive,computed,watch,vmodel et directive v-if et v-for v-else
-- le code pour le design est realise en scss et non tailwind
+# CAPTE Search Bar 🔍 
+## This is a search bar in the colors of CAPTE using vue3(composition API) 💻 and typscript.
 
-## Lien vers le repo github
+ It allows for fetching products from external APIs 🌐 and returning the results in a dynamic list. Additionally, products are displayed based on their categories 📚. The code is written in TypeScript 📝. The header contains two loader errors ❌ and loading ⏰ based on server return and errors in general. The code is debounced 🕰️ to avoid too frequent requests. The code includes the following concepts in practice:
 
 
+- ref 🔗
+- reactive 🔄
+- computed 🧮
+- watch 👀
+- vmodel 🎛️
+- directives v-if and v-for v-else 📜
+- The design code is written in SCSS and not Tailwind 🎨.
 
-## Lien vers le projet en ligne
+
+## Link to the GitHub repo for the solution
+[repo github](https://github.com/letotor/capte-search-bar)
+
+
+## Link to the GitHub repo init
+[repo github init](https://github.com/Advent-Of-Vue/2022-gift-search-bar)
+
+## Link to the online project
+[demo live](https://capte-dgwebcreation.netlify.app/)
+
 
 ![capture error](https://imgur.com/EpYkNfS.png)  
 ![capture loading](https://imgur.com/ZkwhIre.png)  
 
 
-## lien des captures d ecran
+## Link to the screenshot(s)
 ![capture result](
 https://imgur.com/H7mG32l.png
 ) 
+
+
+---
 # Advent Of Vue 2022
 
 ## If you didn't get here from an email, read this section! Skip it otherwise.
