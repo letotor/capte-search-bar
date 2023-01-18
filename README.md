@@ -33,6 +33,8 @@
 https://imgur.com/H7mG32l.png
 ) 
 
+## lighthouse score
+![lighthouse score](https://imgur.com/42BMCnh.png)
 
 ---
 # Advent Of Vue 2022
