@@ -3,7 +3,7 @@
 <nav class="menu-barre">
     <div class="logo">
       <img
-        src="	https://getcapte.com/wp-content/uploads/2020/03/capte-blanc-114px.png"
+        src="../asset/img/capte-blanc-114px.png"
         class="logo"
       />
       <p class="logo-text">Search bar Project</p>
