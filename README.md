@@ -1,5 +1,5 @@
 # CAPTE Search Bar 🔍 
-## This is a search bar in the colors of CAPTE using vue3(composition API) 💻 and typscript.
+## This is a search bar in the colors of CAPTE using vue3 (composition API) 💻 , vite and typescript.
 
  It allows for fetching products from external APIs 🌐 and returning the results in a dynamic list. Additionally, products are displayed based on their categories 📚. The code is written in TypeScript 📝. The header contains two loader errors ❌ and loading ⏰ based on server return and errors in general. The code is debounced 🕰️ to avoid too frequent requests. The code includes the following concepts in practice:
 
