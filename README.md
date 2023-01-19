@@ -29,9 +29,13 @@
 
 
 ## Link to the screenshot(s)
-![capture result](
+![PC result](
 https://imgur.com/H7mG32l.png
 ) 
+![smartphone result](
+https://imgur.com/QbazuWW.png
+) 
+
 
 ## lighthouse score
 ![lighthouse score](https://imgur.com/42BMCnh.png)
