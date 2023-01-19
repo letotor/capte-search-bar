@@ -34,7 +34,7 @@
 
 <script setup lang="ts">
 import { ref, watch, reactive, computed } from "vue";
-import debounce from "lodash/debounce";
+import debounce from 'lodash/debounce';
 import Product from "../interfaces/product.interface";
 
 const searchTerm = ref("");
@@ -200,6 +200,12 @@ watch(searchTerm, debouncedSearch);
   right: 78px;
   top: 32px;
   width: 287px;
+  @media screen and (max-width: 500px) {
+    right: 0;
+    width: 100%;
+  }
+    
+  
 
   //height: 400px;
   border: 1px solid var(--bg-secondary);
