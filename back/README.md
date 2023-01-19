@@ -18,7 +18,7 @@ A package manager like npm or yarn
 1. Clone the repository and cd into the back project directory 
 
 ```javascript
-git clone https://github.com/letotor/gift-search-bar.git
+git clone https://github.com/letotor/capte-search-bar.git
 cd back
 ```
 
