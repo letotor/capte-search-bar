@@ -20,19 +20,7 @@ class ProductsService {
             thumbnail: 'product1-thumbnail.jpg',
             images: ['product1-1.jpg', 'product1-2.jpg']
         },
-        {
-            id: 2,
-            title: 'Product 2',
-            description: 'This is another sample product',
-            price: 29.99,
-            discountPercentage: 10,
-            rating: 5,
-            stock: 5,
-            brand: 'Brand 2',
-            category: 'Category 2',
-            thumbnail: 'product2-thumbnail.jpg',
-            images: ['product2-1.jpg', 'product2-2.jpg']
-        }
+        
     ];
 
 
@@ -41,9 +29,8 @@ class ProductsService {
         // Just return all our messages
         return this.products;
     }
+    async create(data: Pick<Product, 'title' | 'description' | 'price' | 'discountPercentage' | 'rating' | 'stock' | 'brand' | 'category' | 'thumbnail' | 'images'>) {
 
-
-    async create(data: Pick<Product, 'title' | 'description' | 'price' | 'brand' | 'category'>) {
         // Logic to create a new product using the data passed
         const product: Product = {
             id: this.products.length + 1,
