@@ -18,38 +18,57 @@ type ServiceTypes = {
     products: ProductsService
 }
 
-//const app = feathers<ServiceTypes>()
-
-
 const app = koa<ServiceTypes>(feathers())
-
-// Use the current folder for static file hosting
+// Utilise le dossier actuel pour l'hébergement de fichiers statiques
 app.use(serveStatic('.'))
-// Register the error handle
+// Enregistrer le gestionnaire d'erreur
 app.use(errorHandler())
-// Parse JSON request bodies
+ //Analyse le corps des requetes JSON
 app.use(bodyParser())
 
-// Register REST service handler
+// Enregistre le gestionnaire de service REST
 app.configure(rest())
-// Configure Socket.io real-time APIs
+// Configure les API en temps réel de Socket.io
 app.configure(socketio())
-// Register our messages service
+// Enregistre notre service de messages
 
 // Enregistre le service de message sur l'application Feathers
 app.use('messages', new MessageService())
 app.use('products', new ProductsService());
 
-// Add any new real-time connection to the `everybody` channel
+// Ajoutez toute nouvelle connexion en temps réel au canal "everybody"
 app.on('connection', (connection) => app.channel('everybody').join(connection))
-// Publish all events to the `everybody` channel
+// Publie tous les événements sur le canal "everybody"
 app.publish((_data) => app.channel('everybody'))
 
-// Start the server
+// Démarrer le serveur
+app.listen(3030).then(() => console.log('Feathers server lisning on lodcalhost:3030'))
+
+app.service('messages').create({
+    text: 'Hello world from the server'
+})
+// Récupère le service de produits
+    const productsService = app.service('products');
+// Crée de nouveaux produits en utilisant les données de productsDataFaker pour tester
+   productsDataFaker.map(product => productsService.create(product))
+
+productsService.create({
+    ...productsDataFaker[8]
+});
 
 
 
-// // Connect chaque fois qu'un nouveau message a été créé
+
+
+
+
+
+
+
+
+//const app = feathers<ServiceTypes>()
+
+   // // Connect chaque fois qu'un nouveau message a été créé
 // app.service('messages').on('created', (message: Message) => {
 //    // console.log('Un nouveau message a été créé', message)
 // })
@@ -58,18 +77,6 @@ app.publish((_data) => app.channel('everybody'))
 // });
 
 //app.service('products')
-
-app.listen(3030).then(() => console.log('Feathers server lisning on lodcalhost:3030'))
-
-
-app.service('messages').create({
-    text: 'Hello world from the server'
-})
-
- // idem pour produits
-    const productsService = app.service('products');
-    // creer nouveau product
-   productsDataFaker.map(product => productsService.create(product))
 
 //  
 //////////////////////
