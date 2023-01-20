@@ -1,1 +1,146 @@
-<meta http-equiv="Refresh" content="0; url='/messages'" />
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Feathers Example</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@2.46.1/dist/full.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2/dist/tailwind.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://feathersjs.com/feathers-chat.css" />
+
+</head>
+
+<body data-theme="dracula">
+    <main id="main" class="p-8">
+        <h1 class="font-medium leading-tight text-5xl mt-0 mb-2">App : Création et list de produits </h1>
+    <div class="flex">
+        <div class="w-1/4 p-2">
+            <h2 class="pt-1 pb-2 text-lg">Info produit</h2>
+            <form class="bg-white p-6 rounded-lg" onsubmit="createProduct(event)">
+                <h2 class="text-lg  text-gray-700  font-medium mb-4">Créer produit</h2>
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-medium mb-2">Titre</label>
+                    <input name="title" id="title" type="text" class="input input-bordered w-full border-gray-400 p-2 rounded-lg" />
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-medium mb-2">Description</label>
+                    <input name="description" id="description" type="text"
+                        class="input input-bordered w-full border-gray-400 p-2 rounded-lg" />
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-medium mb-2">Prix</label>
+                    <input name="price" id="price" type="text" class="input input-bordered w-full border-gray-400 p-2 rounded-lg" />
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-medium mb-2">Remise</label>
+                    <input name="discountPercentage" id="discountPercentage" type="text"
+                        class="input input-bordered w-full border-gray-400 p-2 rounded-lg" />
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-medium mb-2">Note</label>
+                    <input name="rating" id="rating" type="text" class="input input-bordered w-full border-gray-400 p-2 rounded-lg" />
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-medium mb-2">Stock</label>
+                    <input name="stock" id="stock" type="text" class="input input-bordered w-full border-gray-400 p-2 rounded-lg" />
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-medium mb-2">Marque</label>
+                    <input name="brand" id="brand" type="text" class="input input-bordered w-full border-gray-400 p-2 rounded-lg" />
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 font-medium mb-2">Categorie</label>
+                    <input name="category" id="category" type="text"
+                        class="input input-bordered w-full border-gray-400 p-2 rounded-lg" />
+                </div>
+                <button type="submit" class="btn btn-primary">Creer</button>
+            </form>
+        </div>
+        <div class="w-3/4 p-2">
+            <h2 class="pt-1 pb-2 text-lg">Liste produits</h2>
+            <div id="product-list"></div>
+            
+        </div>
+    </div>
+
+    </main>
+    <script src="//unpkg.com/@feathersjs/client@^5.0.0-pre.34/dist/feathers.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript">
+        // Set up socket.io
+        const socket = io('http://localhost:3030')
+        // Initialize a Feathers app
+        const app = feathers()
+
+        // Register socket.io to talk to our server
+        app.configure(feathers.socketio(socket))
+
+        // Form submission handler that sends a new message
+        async function createProduct(event) {
+            event.preventDefault()
+
+            const title = document.getElementById('title').value
+            const description = document.getElementById('description').value
+            const price = document.getElementById('price').value
+            const discountPercentage = document.getElementById('discountPercentage').value
+            const rating = document.getElementById('rating').value
+            const stock = document.getElementById('stock').value
+            const brand = document.getElementById('brand').value
+            const category = document.getElementById('category').value
+
+            // Create a new product with the input field values
+            await app.service('products').create({
+                title,
+                description,
+                price,
+                discountPercentage,
+                rating,
+                stock,
+                brand,
+                category
+            })
+
+            document.getElementById('title').value = ''
+            document.getElementById('description').value = ''
+            document.getElementById('price').value = ''
+            document.getElementById('discountPercentage').value = ''
+            document.getElementById('rating').value = ''
+            document.getElementById('stock').value = ''
+            document.getElementById('brand').value = ''
+            document.getElementById('category').value = ''
+        }  // Renders a single product on the page
+        function addProduct(product) {
+            document.getElementById('product-list').innerHTML += `<div class="flex flex-column bg-gray-200 p-2 my-2">
+      <h3 class="text-indigo-600 text-lg">${product.title}</h3>
+      <p class="text-gray-600">${product.description}</p>
+      <p class="text-gray-600">Price: $${product.price}</p>
+      <p class="text-gray-600">Discount: ${product.discountPercentage}%</p>
+      <p class="text-gray-600">Rating: ${product.rating}</p>
+      <p class="text-gray-600">Stock: ${product.stock}</p>
+      <p class="text-gray-600">Brand: ${product.brand}</p>
+      <p class="text-gray-600">Category: ${product.category}</p>
+    </div>`
+        }
+
+        const main = async () => {
+            const products = await app.service('products').find()
+            products.forEach(addProduct)
+            app.service('products').on('created', addProduct)
+        }
+
+        main()
+    </script>
+    <style>
+        input {
+            background-color: #1A1A1D;
+            color: white;
+        }
+
+        button {
+            background-color: #50FA7B;
+            color: white;
+        }
+    </style>
+</body>
+
+</html>

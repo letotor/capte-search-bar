@@ -1,11 +1,11 @@
 # Gift Search Bar
-This project is a simple search bar for finding gifts. It utilizes a RESTful API built with Feathers.js and TypeScript to manage a list of products.
-
-
+The project consists of creating a web application using the Feathers.js framework to create an interface for creating and managing products. It will use the features of Socket.io to allow for real-time updating of the product list without page reloading. The structure of the application will include a product creation form on the left of the screen, allowing users to input product details and submit to create a new product. On the right of the screen, there will be a list of existing products, which will be updated in real-time when products are created or modified. The application will also use a database to store information about the products. 💻🛍️📊📝🔄
 note: This project is a work in progress and is not yet complete.
 
 
 context : IO sockets allow real-time two-way communication between a server and a client, unlike a standard server response which typically only allows one-way communication. IO sockets use a persistent connection to allow real-time data transmission, while a standard server response typically requires a new request for each response. This means that IO sockets enable more dynamic and responsive interactions between users and applications.
+
+![create product socket io](https://imgur.com/x7yqVPJ.png)
 
 ## Getting Started
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
